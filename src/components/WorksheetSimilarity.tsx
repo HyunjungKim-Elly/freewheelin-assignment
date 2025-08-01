@@ -1,8 +1,14 @@
 import { useSimilarityList } from "@/api/hooks/useSimilarityList"
+import { Quiz } from "@/api/types/type"
 
 
-export const WorksheetSimilarity = () => {
-    const { data, isLoading } = useSimilarityList(39468, [39468])
+interface WorksheetSimilarityProps {
+    selectedProblem: Quiz | null
+}
+
+export const WorksheetSimilarity = ({ selectedProblem }: WorksheetSimilarityProps) => {
+
+    const { data, isLoading } = useSimilarityList(selectedProblem?.id ?? 0, [selectedProblem?.id ?? 0])
 
     if (isLoading) return <div>Loading...</div>
 

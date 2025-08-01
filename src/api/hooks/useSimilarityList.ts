@@ -1,5 +1,3 @@
-// src/api/hooks/useSimilarityList.ts
-
 import useSWR from 'swr'
 import { fetcher } from '@/lib/fetcher'
 import { Quiz } from '../types/type'

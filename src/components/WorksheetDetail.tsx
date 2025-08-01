@@ -1,8 +1,12 @@
 import { useQuizList } from "@/api/hooks/useQuizList"
-import { LevelString, TypeString } from "@/api/types/type"
+import { LevelString, Quiz, TypeString } from "@/api/types/type"
 import { IconButton } from "./ui/IconButton"
 
-export const WorksheetDetail = () => {
+interface WorksheetDetailProps {
+    setSelectedProblem: (problem: Quiz) => void
+}
+
+export const WorksheetDetail = ({ setSelectedProblem }: WorksheetDetailProps) => {
 
     const { data, isLoading } = useQuizList()
 
@@ -23,7 +27,7 @@ export const WorksheetDetail = () => {
                             <p>{LevelString[item.level]}</p>
                             <p>{TypeString[item.type]}</p>
                             <p>{item.answerRate}</p>
-                            <IconButton icon="add" onClick={() => { }}>
+                            <IconButton icon="add" onClick={() => setSelectedProblem(item)}>
                                 유사 문제
                             </IconButton>
                         </div>
