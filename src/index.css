@@ -1,6 +1,8 @@
 @import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
 
 @import "tailwindcss";
+@import "./styles/generated-spacing.css";
+
 
 /* 테마 설정 */
 @theme {  
@@ -9,7 +11,7 @@
   --font-size-sp-14: 14px, 20px;
   --font-size-sp-16: 16px, 24px;
   --font-size-sp-18: 18px, 26px;
-  --font-size-sp-20: 20px, 30px;
+  --font-size-sp-20: 20px, 28px;
   --font-weight-r: 400;
   --font-weight-m: 500;
   --font-weight-b: 700;
@@ -66,11 +68,10 @@
   }
 }       
 
+
 body {
   font-family: var(--font-spoqa);
+  width: 100%;
   margin: 0 auto;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
 }
