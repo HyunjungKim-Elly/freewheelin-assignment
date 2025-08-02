@@ -21,6 +21,7 @@ export const WorksheetDetail = () => {
         removeWorksheetProblem,
         setActiveProblem,
         setShouldRefetch,
+        setSimilarityList,
     } = useWorksheetStore()
 
     const [levelCounts, setLevelCounts] = useState<LevelCounts>({
@@ -61,8 +62,8 @@ export const WorksheetDetail = () => {
 
         // 현재 활성화된 문제를 삭제하는 경우
         if (activeProblemId === problemId) {
-            setActiveProblem(null)
-            setShouldRefetch(true)
+            // 현재 활성화된 문제를 삭제하면 유사문제 store에서 바로 초기화, useSimilarityList 활용 안해도됨
+            setSimilarityList([])
         }
     }
 
