@@ -1,7 +1,7 @@
 @import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
 
 @import 'tailwindcss';
-@import './styles/generated-spacing.css';
+@config '../tailwind.config.ts';
 
 /* 테마 설정 */
 @theme {
@@ -20,69 +20,13 @@
     --color-mono-gray-300: #e8e8e8;
     --color-mono-gray-400: #e0e0e0;
     --color-mono-gray-500: #959595;
+    --color-mono-gray-600: #c0c0c0;
     --color-mono-gray-800: #5c5c5c;
     --color-mono-gray-900: #333333;
     --color-green-500: #54c0b1;
     --color-blue-500: #00abff;
     --color-yellow-500: #ffc64d;
     --color-red-500: #fd5354;
-}
-
-@theme {
-    --screen-lg: 1024px;
-    --screen-xl: 1280px;
-}
-
-@responsive {
-    .screen-lg {
-        @apply max-w-[1024px];
-    }
-    .screen-xl {
-        @apply max-w-[1280px];
-    }
-}
-
-@layer utilities {
-    .text-sp-8 {
-        font-size: 8px;
-        line-height: 12px;
-    }
-    .text-sp-10 {
-        font-size: 10px;
-        line-height: 15px;
-    }
-    .text-sp-12 {
-        font-size: 12px;
-        line-height: 18px;
-    }
-    .text-sp-14 {
-        font-size: 14px;
-        line-height: 21px;
-    }
-    .text-sp-16 {
-        font-size: 16px;
-        line-height: 24px;
-    }
-    .text-sp-18 {
-        font-size: 18px;
-        line-height: 26px;
-    }
-    .text-sp-20 {
-        font-size: 20px;
-        line-height: 30px;
-    }
-    .text-sp-22 {
-        font-size: 22px;
-        line-height: 32px;
-    }
-    .text-sp-24 {
-        font-size: 24px;
-        line-height: 36px;
-    }
-    .text-sp-26 {
-        font-size: 26px;
-        line-height: 38px;
-    }
 }
 
 body {

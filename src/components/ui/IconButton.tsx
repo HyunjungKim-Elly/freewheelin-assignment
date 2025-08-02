@@ -21,11 +21,11 @@ export const IconButton = ({ icon, onClick, children }: IconButtonProps) => {
 
     return (
         <button
-            className="rounded-12 flex items-center gap-4 bg-gray-100"
+            className="rounded-12 flex min-w-fit flex-shrink-0 items-center gap-4 bg-gray-100 whitespace-nowrap"
             onClick={onClick ?? undefined}
         >
-            {iconMap[icon]}
-            {children}
+            <span className="flex-shrink-0">{iconMap[icon]}</span>
+            <span className="flex-shrink-0">{children}</span>
         </button>
     )
 }

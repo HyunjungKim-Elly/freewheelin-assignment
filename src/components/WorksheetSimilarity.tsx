@@ -27,76 +27,84 @@ export const WorksheetSimilarity = () => {
     })
 
     return (
-        <div
-            className={`bg-mono-gray-300 rounded-12 h-screen w-full overflow-hidden lg:max-w-[504px] ${similarityList?.length === 0 || !similarityList ? 'flex items-center justify-center' : ''}`}
-        >
+        <div className="bg-mono-gray-300 pc:w-[504px] rounded-12 pc:h-[1022px] flex h-[740px] w-480 flex-col overflow-hidden">
+            {/* 헤더 - 고정 */}
             {similarityList && similarityList.length > 0 && (
-                <h2 className="text-sp-16 font-b p-16">유사 문제</h2>
-            )}
-            <div className="h-screen overflow-y-auto">
-                <div className="flex flex-col gap-16 px-16">
-                    {similarityList?.map((item, idx) => (
-                        <div key={item.id} className="rounded-12 bg-white">
-                            {/* 문제 헤더 */}
-                            <div className="flex w-full items-center gap-10 rounded-t-xl bg-gray-100">
-                                <div className="flex w-full items-center justify-between px-28 py-16">
-                                    <div className="flex items-center gap-36">
-                                        <span className="text-sp-16 font-b">{idx + 1}</span>
-                                        <p className="text-sp-14 max-w-[228px] truncate overflow-hidden whitespace-nowrap">
-                                            {item.title}
-                                        </p>
-                                    </div>
-                                    <div className="flex justify-end gap-12">
-                                        <IconButton
-                                            icon="swap"
-                                            onClick={() => {
-                                                replaceProblem(item)
-                                                setActiveProblem(item.id)
-                                                setShouldRefetch(false)
-                                            }}
-                                        >
-                                            <span className="text-mono-gray-600 whitespace-nowrap">
-                                                교체
-                                            </span>
-                                        </IconButton>
-                                        <IconButton
-                                            icon="add"
-                                            onClick={() => {
-                                                insertBeforeActive(item)
-                                                setShouldRefetch(false)
-                                            }}
-                                        >
-                                            <span className="text-mono-gray-600 whitespace-nowrap">
-                                                추가
-                                            </span>
-                                        </IconButton>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* 문제 내용 */}
-                            <div className="flex p-16">
-                                <div className="mr-16 flex flex-col gap-4 text-center">
-                                    <div className={`text-sp-12 rounded-4 h-20 w-40 bg-gray-200`}>
-                                        <span className={`${getLevelColor(item.level)}`}>
-                                            {LevelString[item.level]}
-                                        </span>
-                                    </div>
-                                    <div className="text-sp-12 rounded-4 text-mono-gray-600 text-mono-gray-600 h-20 w-40 bg-gray-200 p-2">
-                                        {item.answerRate}
-                                    </div>
-                                    <div className="text-sp-12 rounded-4 text-mono-gray-600 h-20 w-40 bg-gray-200 p-2">
-                                        {TypeString[item.type]}
-                                    </div>
-                                </div>
-                                <div className="rounded-12 mr-200 mb-16 bg-white">
-                                    <img src={item.problemImageUrl} alt={item.title} />
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+                <div className="flex-shrink-0">
+                    <h2 className="text-sp-16 font-b p-16">유사 문제</h2>
                 </div>
-                {!similarityList && (
-                    <div className="text-mono-gray-500 text-sp-14 text-center">
+            )}
+
+            {/* 스크롤 가능한 컨텐츠 영역 */}
+            <div className="flex-1 overflow-y-auto">
+                {similarityList && similarityList.length > 0 ? (
+                    <div className="flex flex-col gap-16 px-16 pb-16">
+                        {similarityList.map((item, idx) => (
+                            <div key={item.id} className="rounded-12 bg-white drop-shadow-sm">
+                                {/* 문제 헤더 */}
+                                <div className="flex w-full items-center gap-10 rounded-t-xl bg-gray-100">
+                                    <div className="flex w-full items-center justify-between px-28 py-16">
+                                        <div className="flex items-center gap-32">
+                                            <span className="text-sp-18 font-b pc:text-sp-20">
+                                                {idx + 1}
+                                            </span>
+                                            <p className="text-sp-14 max-w-[228px] truncate overflow-hidden whitespace-nowrap">
+                                                {item.title}
+                                            </p>
+                                        </div>
+                                        <div className="flex justify-end gap-12">
+                                            <IconButton
+                                                icon="swap"
+                                                onClick={() => {
+                                                    replaceProblem(item)
+                                                    setActiveProblem(item.id)
+                                                    setShouldRefetch(false)
+                                                }}
+                                            >
+                                                <span className="text-sp-12 text-mono-gray-600 whitespace-nowrap">
+                                                    교체
+                                                </span>
+                                            </IconButton>
+                                            <IconButton
+                                                icon="add"
+                                                onClick={() => {
+                                                    insertBeforeActive(item)
+                                                    setShouldRefetch(false)
+                                                }}
+                                            >
+                                                <span className="text-sp-12 text-mono-gray-600 whitespace-nowrap">
+                                                    추가
+                                                </span>
+                                            </IconButton>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* 문제 내용 */}
+                                <div className="flex p-16">
+                                    <div className="mr-16 flex flex-col gap-4 text-center">
+                                        <div
+                                            className={`text-sp-12 rounded-4 h-20 w-40 bg-gray-200`}
+                                        >
+                                            <span className={`${getLevelColor(item.level)}`}>
+                                                {LevelString[item.level]}
+                                            </span>
+                                        </div>
+                                        <div className="text-sp-12 rounded-4 text-mono-gray-600 text-mono-gray-600 h-20 w-40 bg-gray-200 p-2">
+                                            {item.answerRate}
+                                        </div>
+                                        <div className="text-sp-12 rounded-4 text-mono-gray-600 h-20 w-40 bg-gray-200 p-2">
+                                            {TypeString[item.type]}
+                                        </div>
+                                    </div>
+                                    <div className="rounded-12 mr-200 mb-16 bg-white">
+                                        <img src={item.problemImageUrl} alt={item.title} />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-mono-gray-500 text-sp-14 flex h-full flex-col justify-center text-center">
                         <div className="mb-4 flex items-center justify-center gap-6">
                             <AddProblemButton /> <span>버튼을 누르면</span>
                         </div>
