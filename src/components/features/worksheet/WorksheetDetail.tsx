@@ -1,6 +1,6 @@
 import { useProblemList } from '@/api/hooks/useProblemList'
-import { IconButton } from './ui/IconButton'
-import { ProblemCard } from './ProblemCard'
+import { IconButton } from '../../ui/IconButton'
+import { ProblemCard } from '../problem/ProblemCard'
 import { useWorksheetStore } from '@/stores/useWorksheetStore'
 import { useEffect, useState } from 'react'
 
@@ -92,7 +92,7 @@ export const WorksheetDetail = () => {
                                     >
                                         <span
                                             className={`text-sp-12 whitespace-nowrap ${
-                                                isActive ? 'text-blue-500' : 'text-mono-gray-600'
+                                                isActive ? 'text-blue-500' : 'text-mono-gray-500'
                                             }`}
                                         >
                                             유사 문제
@@ -102,7 +102,7 @@ export const WorksheetDetail = () => {
                                         icon="delete"
                                         onClick={() => handleDeleteProblem(item.id)}
                                     >
-                                        <span className="text-sp-12 text-mono-gray-600 whitespace-nowrap">
+                                        <span className="text-sp-12 text-mono-gray-500 whitespace-nowrap">
                                             삭제
                                         </span>
                                     </IconButton>
@@ -128,13 +128,14 @@ export const WorksheetDetail = () => {
             {/* 푸터 */}
             <div className="flex w-full flex-shrink-0 items-center justify-end p-16">
                 {hasProblems ? (
-                    <div className="flex items-center gap-12">
+                    <div className="flex items-center">
                         <span className="text-sp-12 text-mono-gray-600 pc:text-sp-16">
                             하{levelCounts[1]} · 중하{levelCounts[2]} · 중{levelCounts[3]} · 상
                             {levelCounts[4]} · 최상{levelCounts[5]}
                         </span>
-                        <span className="text-sp-12 pc:text-sp-16 text-white">
-                            | 문제 수: {worksheetProblems.length}
+                        <span className="text-sp-12 text-mono-gray-600 pc:text-sp-16 mx-8">|</span>
+                        <span className="text-sp-12 pc:text-sp-16 font-m text-white">
+                            문제 수: {worksheetProblems.length}
                         </span>
                     </div>
                 ) : (

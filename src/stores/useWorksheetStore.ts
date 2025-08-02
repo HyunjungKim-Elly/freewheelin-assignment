@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { Problem } from '@/api/types/type'
+import { Problem } from '@/api/types/common.types'
 
 interface WorksheetState {
     activeProblemId: number | null

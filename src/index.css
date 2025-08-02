@@ -6,6 +6,8 @@
 /* 테마 설정 */
 @theme {
     --font-spoqa: 'Spoqa Han Sans Neo', sans-serif;
+    --font-size-base: 14px;
+    --line-height-base: 1.5;
     --font-size-sp-8: 8px, 12px;
     --font-size-sp-10: 10px, 15px;
     --font-size-sp-12: 12px, 18px;
@@ -29,10 +31,43 @@
     --color-red-500: #fd5354;
 }
 
+/* 전역 스타일 */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+}
+
 body {
     font-family: var(--font-spoqa);
     color: var(--color-mono-gray-900);
-    width: 100%;
-    margin: 0 auto;
-    min-height: 100vh;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 스크롤바 스타일 */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #959595;
 }

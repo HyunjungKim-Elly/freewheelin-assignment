@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 import { fetcher } from '@/lib/fetcher'
-import { Problem } from '../types/type'
+import { Problem } from '../types/common.types'
 
 interface UseSimilarityListProps {
     problemId: number | null

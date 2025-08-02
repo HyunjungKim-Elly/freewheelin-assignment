@@ -1,5 +1,5 @@
 export const getLevelColor = (level: number) => {
-    if (level === 1) return 'text-blue-500'
+    if (level === 1) return 'text-mono-gray-800'
     if (level === 2) return 'text-blue-500'
     if (level === 3) return 'text-green-500'
     if (level === 4) return 'text-yellow-500'

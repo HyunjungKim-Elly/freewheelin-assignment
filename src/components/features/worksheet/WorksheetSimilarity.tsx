@@ -1,10 +1,10 @@
 import { useSimilarityList } from '@/api/hooks/useSimilarityList'
 import { useWorksheetStore } from '@/stores/useWorksheetStore'
 import { useEffect } from 'react'
-import { IconButton } from './ui/IconButton'
-import { AddIcon } from './ui/icon/AddIcon'
-import { ProblemCard } from './ProblemCard'
-import { Problem } from '@/api/types/type'
+import { IconButton } from '../../ui/IconButton'
+import { AddIcon } from '../../ui/icon/AddIcon'
+import { ProblemCard } from '../problem/ProblemCard'
+import { Problem } from '@/api/types/common.types'
 
 export const WorksheetSimilarity = () => {
     const {
@@ -65,7 +65,7 @@ export const WorksheetSimilarity = () => {
                             const similarityButtons = (
                                 <>
                                     <IconButton icon="swap" onClick={() => handleswapProblem(item)}>
-                                        <span className="text-sp-12 text-mono-gray-600 whitespace-nowrap">
+                                        <span className="text-sp-12 text-mono-gray-500 whitespace-nowrap">
                                             교체
                                         </span>
                                     </IconButton>
@@ -73,7 +73,7 @@ export const WorksheetSimilarity = () => {
                                         icon="add"
                                         onClick={() => handleInsertProblem(item)}
                                     >
-                                        <span className="text-sp-12 text-mono-gray-600 whitespace-nowrap">
+                                        <span className="text-sp-12 text-mono-gray-500 whitespace-nowrap">
                                             추가
                                         </span>
                                     </IconButton>

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { LevelString, Problem, TypeString } from '@/api/types/type'
+import { LevelString, Problem, TypeString } from '@/api/types/common.types'
 import { getLevelColor } from '@/utils/common'
 
 interface ProblemCardProps {
@@ -43,7 +43,7 @@ export const ProblemCard = ({
                     <ProblemInfoBox className={getLevelColor(item.level)}>
                         {LevelString[item.level]}
                     </ProblemInfoBox>
-                    <ProblemInfoBox>{item.answerRate}</ProblemInfoBox>
+                    <ProblemInfoBox>{item.answerRate}%</ProblemInfoBox>
                     <ProblemInfoBox>{TypeString[item.type]}</ProblemInfoBox>
                 </div>
 
@@ -67,6 +67,6 @@ interface ProblemInfoBoxProps {
 
 const ProblemInfoBox = ({ children, className = '' }: ProblemInfoBoxProps) => (
     <div className="text-sp-12 rounded-4 flex h-20 w-40 items-center justify-center bg-gray-200">
-        <span className={`text-mono-gray-600 ${className}`}>{children}</span>
+        <span className={className}>{children}</span>
     </div>
 )
