@@ -1,25 +1,25 @@
-import { useQuizList } from '@/api/hooks/useQuizList'
 import { useSimilarityList } from '@/api/hooks/useSimilarityList'
-import { LevelString, Quiz, TypeString } from '@/api/types/type'
 import { IconButton } from './ui/IconButton'
 import { AddIcon } from './ui/icon/AddIcon'
 import { getLevelColor } from '@/utils/common'
+import { LevelString, TypeString } from '@/api/types/type'
+import { useWorksheetStore } from '@/stores/useWorksheetStore'
 
-interface WorksheetSimilarityProps {
-    selectedProblem: Quiz | null
-}
+export const WorksheetSimilarity = () => {
+    const { activeProblemId, worksheetProblems, replaceProblem, insertBeforeActive } =
+        useWorksheetStore()
 
-export const WorksheetSimilarity = ({ selectedProblem }: WorksheetSimilarityProps) => {
-    const { data: problemList } = useQuizList()
-
-    const problemIds = problemList?.map(item => item.id) ?? []
-    const { data: similarityList } = useSimilarityList(selectedProblem?.id ?? 0, problemIds)
+    const problemIds = worksheetProblems
+        .filter(item => item.id !== activeProblemId)
+        .map(item => item.id)
+    const { data: similarityList } = useSimilarityList(activeProblemId ?? 0, problemIds)
 
     return (
         <div
-            className={`bg-mono-gray-300 rounded-12 w-full max-w-[702px] ${similarityList?.length === 0 || !similarityList ? 'flex items-center justify-center' : ''}`}
+            className={`bg-mono-gray-300 rounded-12 w-full lg:max-w-[504px] ${similarityList?.length === 0 || !similarityList ? 'flex items-center justify-center' : ''}`}
         >
-            <div className="p-16">
+            <h2 className="text-sp-16 font-b p-16">유사 문제</h2>
+            <div>
                 <div className="scroll-m-0 overflow-y-auto px-16">
                     <div className="flex flex-col gap-16">
                         {similarityList?.map((item, idx) => (
@@ -28,18 +28,24 @@ export const WorksheetSimilarity = ({ selectedProblem }: WorksheetSimilarityProp
                                 <div className="flex w-full items-center gap-10 rounded-t-xl bg-gray-100 p-4">
                                     <div className="flex w-full items-center justify-between px-28 py-16">
                                         <div className="flex items-center gap-36">
-                                            <span className="text-sp-20">{idx + 1}</span>
+                                            <span className="text-sp-14">{idx + 1}</span>
                                             <p>{item.title}</p>
                                         </div>
                                         <div className="flex gap-12">
-                                            <IconButton icon="add" onClick={() => {}}>
+                                            <IconButton
+                                                icon="swap"
+                                                onClick={() => replaceProblem(item)}
+                                            >
                                                 <span className="text-mono-gray-600 whitespace-nowrap">
-                                                    유사 문제
+                                                    교체
                                                 </span>
                                             </IconButton>
-                                            <IconButton icon="delete" onClick={() => {}}>
+                                            <IconButton
+                                                icon="add"
+                                                onClick={() => insertBeforeActive(item)}
+                                            >
                                                 <span className="text-mono-gray-600 whitespace-nowrap">
-                                                    삭제
+                                                    추가
                                                 </span>
                                             </IconButton>
                                         </div>
@@ -71,18 +77,25 @@ export const WorksheetSimilarity = ({ selectedProblem }: WorksheetSimilarityProp
                     </div>
                 </div>
                 {!similarityList && (
-                    <div className="text-sp-18 text-center">
-                        <div className="flex items-center justify-center gap-6">
-                            <span className="rounded-2 flex w-fit items-center gap-2 bg-white p-6">
-                                <AddIcon />
-                                유사문제
-                            </span>{' '}
-                            <span>버튼을 누르면</span>
+                    <div className="text-mono-gray-500 text-sp-14 text-center">
+                        <div className="mb-4 flex items-center justify-center gap-6">
+                            <AddProblemButton /> <span>버튼을 누르면</span>
                         </div>
-                        <span>유사 문제가 추가됩니다.</span>
+                        <span className="inline-block">유사 문제가 추가됩니다.</span>
                     </div>
                 )}
             </div>
+        </div>
+    )
+}
+
+const AddProblemButton = () => {
+    return (
+        <div className="border-mono-gray-400 flex h-24 items-center justify-center gap-6 border">
+            <span className="rounded-2 flex w-fit items-center gap-2 rounded bg-white p-6">
+                <AddIcon size={10} />
+                <span className="text-sp-10">유사 문제</span>
+            </span>
         </div>
     )
 }

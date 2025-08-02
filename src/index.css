@@ -6,6 +6,8 @@
 /* 테마 설정 */
 @theme {
     --font-spoqa: 'Spoqa Han Sans Neo', sans-serif;
+    --font-size-sp-8: 8px, 12px;
+    --font-size-sp-10: 10px, 15px;
     --font-size-sp-12: 12px, 18px;
     --font-size-sp-14: 14px, 20px;
     --font-size-sp-16: 16px, 24px;
@@ -16,10 +18,12 @@
     --font-weight-b: 700;
     --color-mono-gray-200: #f5f5f5;
     --color-mono-gray-300: #e8e8e8;
+    --color-mono-gray-400: #e0e0e0;
+    --color-mono-gray-500: #959595;
     --color-mono-gray-800: #5c5c5c;
-    --color-mono-gray-600: #959595;
+    --color-mono-gray-900: #333333;
     --color-green-500: #54c0b1;
-    --color-green-300: #00abff;
+    --color-blue-500: #00abff;
     --color-yellow-500: #ffc64d;
     --color-red-500: #fd5354;
 }
@@ -39,13 +43,21 @@
 }
 
 @layer utilities {
+    .text-sp-8 {
+        font-size: 8px;
+        line-height: 12px;
+    }
+    .text-sp-10 {
+        font-size: 10px;
+        line-height: 15px;
+    }
     .text-sp-12 {
         font-size: 12px;
         line-height: 18px;
     }
     .text-sp-14 {
         font-size: 14px;
-        line-height: 20px;
+        line-height: 21px;
     }
     .text-sp-16 {
         font-size: 16px;
@@ -75,6 +87,7 @@
 
 body {
     font-family: var(--font-spoqa);
+    color: var(--color-mono-gray-900);
     width: 100%;
     margin: 0 auto;
     min-height: 100vh;
