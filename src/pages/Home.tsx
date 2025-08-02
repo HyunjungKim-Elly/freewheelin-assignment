@@ -3,7 +3,7 @@ import { WorksheetSimilarity } from '@/components/WorksheetSimilarity'
 
 const Home = () => {
     return (
-        <div className="min-h-screen w-full text-gray-800">
+        <div className="h-screen w-full text-gray-800">
             <main>
                 <div className="flex justify-center gap-16">
                     <WorksheetSimilarity />

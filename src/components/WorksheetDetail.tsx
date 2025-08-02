@@ -9,11 +9,12 @@ export const WorksheetDetail = () => {
     const { data } = useProblemList()
 
     const {
+        activeProblemId,
         worksheetProblems,
         setWorksheetProblems,
         removeWorksheetProblem,
         setActiveProblem,
-        activeProblemId,
+        setShouldRefetch,
     } = useWorksheetStore()
 
     useEffect(() => {
@@ -29,13 +30,18 @@ export const WorksheetDetail = () => {
                 {worksheetProblems.length > 0 && (
                     <div className="flex flex-col gap-16">
                         {worksheetProblems?.map((item, idx) => (
-                            <div key={item.id} className="rounded-12 bg-white">
+                            <div
+                                key={item.id}
+                                className={`rounded-12 bg-white ${
+                                    activeProblemId === item.id ? 'border-3 border-blue-500' : ''
+                                }`}
+                            >
                                 {/* 문제 헤더 */}
                                 <div className="flex w-full items-center gap-10 rounded-t-xl bg-gray-100 p-4">
                                     <div className="flex w-full items-center justify-between px-28 py-16">
                                         <div className="flex items-center gap-36">
-                                            <span className="text-sp-14">{idx + 1}</span>
-                                            <p>{item.title}</p>
+                                            <span className="text-sp-16 font-b">{idx + 1}</span>
+                                            <p className="text-sp-14 pr-16">{item.title}</p>
                                         </div>
                                         <div className="flex gap-12">
                                             <IconButton
@@ -46,6 +52,7 @@ export const WorksheetDetail = () => {
                                                 }
                                                 onClick={() => {
                                                     setActiveProblem(item.id)
+                                                    setShouldRefetch(true)
                                                 }}
                                             >
                                                 <span
@@ -60,7 +67,19 @@ export const WorksheetDetail = () => {
                                             </IconButton>
                                             <IconButton
                                                 icon="delete"
-                                                onClick={() => removeWorksheetProblem(item.id)}
+                                                onClick={() => {
+                                                    removeWorksheetProblem(item.id)
+                                                    console.log(
+                                                        '삭제/ 같음 비교',
+                                                        activeProblemId,
+                                                        item.id,
+                                                    )
+                                                    if (activeProblemId === item.id) {
+                                                        console.log('삭제/ 같음')
+                                                        setActiveProblem(null)
+                                                        setShouldRefetch(true)
+                                                    }
+                                                }}
                                             >
                                                 <span className="text-mono-gray-600 whitespace-nowrap">
                                                     삭제

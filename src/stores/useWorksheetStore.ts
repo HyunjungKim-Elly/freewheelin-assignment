@@ -5,17 +5,19 @@ import { Problem } from '@/api/types/type'
 interface WorksheetState {
     activeProblemId: number | null
     worksheetProblems: Problem[]
-    setActiveProblem: (id: number) => void
+    shouldRefetch: boolean
+    setActiveProblem: (id: number | null) => void
     replaceProblem: (newProblem: Problem) => void
     insertBeforeActive: (newProblem: Problem) => void
     setWorksheetProblems: (list: Problem[]) => void
     removeWorksheetProblem: (id: number) => void
+    setShouldRefetch: (shouldRefetch: boolean) => void
 }
 
 export const useWorksheetStore = create<WorksheetState>((set, get) => ({
     activeProblemId: null,
     worksheetProblems: [],
-
+    shouldRefetch: true,
     setActiveProblem: id => set({ activeProblemId: id }),
 
     setWorksheetProblems: list => set({ worksheetProblems: list }),
@@ -40,4 +42,6 @@ export const useWorksheetStore = create<WorksheetState>((set, get) => ({
         set(state => ({
             worksheetProblems: state.worksheetProblems.filter(q => q.id !== id),
         })),
+
+    setShouldRefetch: shouldRefetch => set({ shouldRefetch }),
 }))
